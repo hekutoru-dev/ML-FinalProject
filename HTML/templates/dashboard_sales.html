@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+      <meta charset="utf-8" />
+
+      <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <meta http-equiv="X-UA-Compatible" content="ie=edge">
+
+      <link rel="apple-touch-icon" sizes="76x76" href="../static/img/apple-icon.png">
+      <link rel="icon" type="image/png" href="../static/img/favicon.png">
+      <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+      <title>
+        Product Analysis Dashboard
+      </title>
+
+      <meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0, shrink-to-fit=no' name='viewport' />
+      <!--     Fonts and icons     -->
+      <link href="https://fonts.googleapis.com/css?family=Montserrat:400,700,200" rel="stylesheet" />
+      <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+      <!-- CSS Files -->
+      <link href="../static/css/bootstrap.min.css" rel="stylesheet" />
+      <link href="../static/css/paper-dashboard.css?v=2.0.0" rel="stylesheet" />
+      
+      <!-- D3 & C3 -->
+      <script src="../static/js/c3.min.js"></script>
+      <link rel="stylesheet" href="../static/css/c3.min.css">
+      
+    </head>
+
+    <body class="">
+      
+      <div class="wrapper ">
+
+        <!-- ==================================================================== -->
+        <!-- SideBar -->
+        <div class="sidebar" data-color="orange" data-active-color="danger">
+          <!-- SideBar Header -->
+          <div class="logo">
+            <a href="#" class="simple-text logo-mini">
+              <div class="logo-image-small">
+                <img src="../static/img/shake.jpg">
+              </div>
+            </a>
+            <a href="#" class="simple-text logo-normal">
+              LE CAFÉ
+            </a>
+          </div>
+          <!-- END SideBar Header -->
+
+          <div class="sidebar-wrapper">
+            <!-- SIDE LIST MENU -->
+            <ul class="nav"> 
+              <li class="active ">
+                <a href="./dashboard.html">
+                  <i class="nc-icon nc-chart-pie-36"></i>
+                  <p>Sales Dashboard</p>
+                </a>
+              </li>   
+              <li>
+                <a href="./notifications.html">
+                  <i class="nc-icon nc-money-coins"></i>
+                  <p>Sales Prediction</p>
+                </a>
+              </li>
+              <li>
+                <a href="./user.html">
+                  <i class="nc-icon nc-single-02"></i>
+                  <p>User Profile</p>
+                </a>
+              </li>
+              <li>
+                <a href="./tables.html">
+                  <i class="nc-icon nc-tile-56"></i>
+                  <p>Table List</p>
+                </a>
+              </li>
+              <li>
+                <a href="./typography.html">
+                  <i class="nc-icon nc-caps-small"></i>
+                  <p>Typography</p>
+                </a>
+              </li>
+            </ul>
+            <!-- END SIDE LIST MENU --> 
+          </div>
+
+        </div>
+        <!-- END SideBar -->
+        <!-- ==================================================================== -->
+
+        <!-- MAIN PANEL: ALL HTML CONTENT (NO SIDEBAR) -->
+        <div class="main-panel">
+          <!-- Navbar -->
+          <nav class="navbar navbar-expand-lg navbar-absolute fixed-top navbar-transparent">
+            <div class="container-fluid">
+
+              <div class="navbar-wrapper">                
+                <a class="navbar-brand" href="#">Cafe Products Dashboard</a>
+              </div>
+
+              <!-- COLLAPSE NAVBAR -->
+              <div class="collapse navbar-collapse justify-content-end" id="navigation">
+                <!-- SEARCH FORM -->
+                <form>
+                  <div class="input-group no-border">
+                    <input type="text" value="" class="form-control" placeholder="Search...">
+                    <div class="input-group-append">
+                      <div class="input-group-text">
+                        <i class="nc-icon nc-zoom-split"></i>
+                      </div>
+                    </div>
+                  </div>
+                </form>
+                <!-- END SEARCH FORM -->
+                
+              </div> <!-- END COLLAPSE-NAVBAR -->
+            </div> <!-- END CONTAINER-FLUID -->
+          </nav>
+          <!-- END Navbar -->
+          
+          <!-- ==================================================================== -->
+          
+          <div class="content"> <!-- DASHBOARD CONTAINER -->
+
+            <!-- ROW PROFITS -->
+            <div class="row">
+                <!-- General Profits Column-Card -->
+                <div class="col-md-4">
+                  <div class="card ">
+
+                    <div class="card-header ">
+                      <h5 class="card-title">General Profits</h5>
+                      <p class="card-category">Top Categories</p>
+                    </div>
+                    <!-- ******************** GRAPHIC GENERAL PROFITS PIE CHART ******************** -->
+                    <div class="card-body ">
+                      <div id="chartProfits"></div>
+                    </div>
+
+                    <div class="card-footer ">                      
+                      <hr>
+                      <div class="stats">
+                        <i class="fa fa-dollar"></i> Best profitable products
+                      </div>
+                    </div> <!-- END This Footer -->
+                  </div> <!-- END This Card -->
+                </div>
+                <!-- END: General Profits Column-Card -->
+
+                <!-- General Pending Value Column-Card -->
+                <div class="col-md-8">
+
+                  <div class="card card-chart">
+
+                    <div class="card-header">
+                      <h5 class="card-title">All Sales</h5>
+                      <p class="card-category">Top Categories Sales and Profit</p>                      
+                    </div>
+                    
+                    <!-- ******************** GRAPHICS CHART ******************** -->
+                    <div class="card-body">
+                      
+                      <!-- TESTIN ADD TABLE -->
+                      <table id="category-table" class="table table-striped">
+                        <thead>
+                            <tr class='table-dark'>
+                            <th class="table-head">Category</th>
+                            <th class="table-head">Quantity</th>
+                            <th class="table-head">Rate</th>
+                            <th class="table-head">Cost</th>
+                            <th class="table-head">Total</th>
+                            <th class="table-head">Profits</th>                            
+                            </tr>
+                        </thead>                        
+                        <tbody></tbody>
+                      </table>
+
+                    </div>
+
+                    <div class="card-footer">
+                      <div class="chart-legend">
+                        
+                      </div>
+                      <hr/>
+                      <div class="card-stats">
+                        <i class="fa fa-check"></i> Data information
+                      </div>
+
+                    </div> <!-- END This Footer -->
+                  </div> <!-- END This Card Chart-->
+                </div>
+                <!-- END: General Pending Value Column-Card -->
+              </div> <!-- END ROW PROFITS -->
+
+
+            <!-- ==================================================================== -->            
+            <!-- 2nd ROW
+            CARD: SALES PER CATEGORY -->
+            <div class="row">
+              <div class="col-md-12">              
+                <div class="card ">
+                  <div class="card-header ">
+                    <h5 class="card-title">Product Sales per Category</h5>
+                    <p class="card-category">2010 - 2011</p>
+                  </div>
+
+                  <div class="card-body ">                  
+                        <div id='graphic_bars'></div>                        
+                  </div> <!-- END CARD BODY: SALES PER CATEGORY-->
+
+                  <div class="card-footer ">
+                    <hr>
+                    <div class="stats">
+                      <i class="fa fa-star"></i> Top Products for:&nbsp;&nbsp; 
+                      <!-- Scripts for Graphics -->                       
+                      <select id='selMenu' onchange="getFavProducts(this.value)">
+                        <!--
+                          <option value="beer">Beer</option>
+                          <option value="beverage">Beverage</option>
+                          <option value="coffee">Coffee</option>
+                          <option value="dessert">Dessert</option>
+                          <option value="food">Food</option>
+                          <option value="panini">Panini</option>
+                          <option value="shakes">Shakes</option>
+                          <option value="tea">Tea</option>
+                          <option value="tobacco">Tobacco</option>
+                          <option value="wines">Wines</option>
+                        -->
+                      </select>
+                      
+
+                    </div> <!-- END DIV stats-->
+                  </div> <!-- END THIS.CARD-FOOTER-->
+                </div> <!-- END CARD SALES PER CATEGORY-->
+              </div> <!-- END COL-MD12: attr -->
+            </div> 
+            <!-- END 2nd ROW-CARD: SALES PER CATEGORY -->
+            <!-- ==================================================================== -->
+            
+            <div class="row"> <!-- LAST DASHBOARD ROW -->
+                <!-- COLUMN A -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-body ">
+                      <div class="row">
+                        <div class="col-5 col-md-4">
+                          <div class="icon-big text-center icon-warning">
+                            <i class="nc-icon nc-globe text-warning"></i>
+                          </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                          <div class="numbers">
+                            <p class="card-category">Total Rate</p>
+                            <p class="card-title" id="total-rate">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                      <hr>
+                      <div class="stats">
+                        <i class="fa fa-dollar"></i> On Thousands
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END COLUMN A -->
+  
+                <!-- COLUMN B -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-body ">
+                      <div class="row">
+                        <div class="col-5 col-md-4">
+                          <div class="icon-big text-center icon-warning">
+                            <i class="nc-icon nc-money-coins text-success"></i>
+                          </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                          <div class="numbers">
+                            <p class="card-category">Total Cost</p>                            
+                            <p class="card-subtitle" id="total-cost">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                      <hr>
+                      <div class="stats">
+                        <i class="fa fa-dollar"></i> On Thousands
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END COLUMN B -->
+                
+                <!-- COLUMN C -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-body ">
+                      <div class="row">
+                        <div class="col-5 col-md-4">
+                          <div class="icon-big text-center icon-warning">
+                            <i class="nc-icon nc-vector text-danger"></i>
+                          </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                          <div class="numbers">
+                            <p class="card-category">Total Products</p>
+                            <p class="card-title" id="total-products">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                      <hr>
+                      <div class="stats">
+                        <i class="fa fa-calendar-o"></i> In the last year
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END COLUMN C -->
+  
+                <!-- COLUMN D -->
+                <div class="col-lg-3 col-md-6 col-sm-6">
+                  <div class="card card-stats">
+                    <div class="card-body ">
+                      <div class="row">
+                        <div class="col-5 col-md-4">
+                          <div class="icon-big text-center icon-warning">
+                            <i class="nc-icon nc-favourite-28 text-primary"></i>
+                          </div>
+                        </div>
+                        <div class="col-7 col-md-8">
+                          <div class="numbers">
+                            <p class="card-category">Total Profit</p>
+                            <p class="card-title" id="total-profit">0</p>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="card-footer ">
+                      <hr>
+                      <div class="stats">
+                        <i class="fa fa-dollar"></i> On Thousands
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <!-- END COLUMN D -->
+  
+              </div> <!-- END LAST DASHBOARD ROW -->               
+
+
+          </div> <!-- END DASHBOARD CONTAINER-->          
+          <!-- ==================================================================== -->
+
+          <!-- FOOTER -->
+          <footer class="footer footer-black  footer-white ">
+            <div class="container-fluid">
+
+              <div class="row">
+                <nav class="footer-nav">
+                  <ul>
+                    <li>
+                      <a target="_blank">Data Analytcis Bootcamp</a>
+                    </li>
+                    <li>
+                      <a target="_blank">ITESM-Santa Fe 2019</a>
+                    </li>                    
+                  </ul>
+                </nav>
+
+                <div class="credits ml-auto"></div>
+              </div> <!-- END ROW -->
+
+            </div> <!-- END CONTAINER-FLUID -->
+          </footer> <!-- END FOOTER -->
+        </div> <!-- END MAIN PANEL: ALL HTML CONTENT (NO SIDEBAR) -->
+      </div>
+
+      <!-- Dependencies Needed -->
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.js"></script>
+      <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+      
+      <script src="../static/js/graphCategory.js"></script>     
+
+      <!-- ADD APP JS SCRIPT FOR FLASK-->
+      
+      <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+
+  
+    </body>
+
+</html>

@@ -1,0 +1,12 @@
+,Male,Male,Male,Female,Female,Female
+,18-25,26-35,>35,18-25,26-35,>35
+frozenset({'NIRVANA HOOKAH SINGLE         '}),14,8,7,8,4,4
+frozenset({'MINT FLAVOUR SINGLE           '}),8,5,4,12,7,5
+frozenset({'CAPPUCCINO                    '}),6,6,8,6,6,8
+frozenset({'GREAT LAKES SHAKE                   '}),5,4,3,6,5,5
+frozenset({'SAMBUCA                       '}),5,10,5,3,4,3
+frozenset({'POUTINE WITH FRIES            '}),4,6,7,4,6,5
+frozenset({'QUA  MINERAL WATER(1000ML)    '}),4,4,4,4,4,4
+frozenset({'CALCUTTA MINT                 '}),1,4,4,4,9,6
+frozenset({'B.M.T. PANINI                 '}),2,3,8,2,4,9
+frozenset({'GREEN APPLE FLAVOUR SINGLE    '}),1,0,0,1,1,1

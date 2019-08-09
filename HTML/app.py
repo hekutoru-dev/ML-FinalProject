@@ -1,8 +1,22 @@
+#Import Maribel
 from flask import Flask, render_template, redirect, Response
 from flask_pymongo import PyMongo
 import time
 from pymongo import MongoClient
 from flask import jsonify
+
+#Extras Hector
+import os
+
+import pandas as pd
+import numpy as np
+
+import sqlalchemy
+from sqlalchemy.ext.automap import automap_base
+from sqlalchemy.orm import Session
+from sqlalchemy import create_engine
+
+from flask_sqlalchemy import SQLAlchemy
 
 # Create an instance of Flask
 app = Flask(__name__)
@@ -12,10 +26,46 @@ app = Flask(__name__)
 #mongo = PyMongo(app, uri="mongodb://panditas:<password>@cluster0-shard-00-00-nngnj.mongodb.net:27017,cluster0-shard-00-01-nngnj.mongodb.net:27017,cluster0-shard-00-02-nngnj.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority/ProyectoFinal")
 # Route to render index.html template using data from Mongo
 
+
+#################################################
+# Database Setup Maribel
+#################################################
 connectionString = "mongodb://panditas:panditas2019@cluster0-shard-00-00-nngnj.mongodb.net:27017,cluster0-shard-00-01-nngnj.mongodb.net:27017,cluster0-shard-00-02-nngnj.mongodb.net:27017/test?ssl=true&replicaSet=Cluster0-shard-0&authSource=admin&retryWrites=true&w=majority"
 dbClient = MongoClient(connectionString)
 db = dbClient["ProyectoFinal"]
 
+#################################################
+# Database Setup Hector
+#################################################
+
+app.config["SQLALCHEMY_DATABASE_URI"] = "sqlite:///db/cafe_sales.sqlite"
+engine = create_engine(f"sqlite:///db/cafe_sales.sqlite")
+db2 = SQLAlchemy(app)
+
+# reflect an existing database into a new model
+Base = automap_base()
+# reflect the tables
+Base.prepare(db2.engine, reflect=True)
+
+# Save references to each table
+Category = Base.classes.category
+Beer = Base.classes.beer
+Beverages = Base.classes.beverages
+Coffee = Base.classes.coffee
+Dessert = Base.classes.dessert
+Food = Base.classes.food
+Panini = Base.classes.panini
+Shakes = Base.classes.shakes
+Tea = Base.classes.tea
+Tobacco = Base.classes.tobacco
+Wine = Base.classes.wines
+
+session = Session(engine)
+
+#################################################
+# Routes
+#################################################
+#Index
 @app.route("/")
 def home():
         
@@ -26,6 +76,7 @@ def index():
         
         return render_template("index.html", )
 
+#Maribel
 @app.route("/mdash")
 def mdash():
         
@@ -102,7 +153,124 @@ def marketing():
         }
 
         return jsonify(trace)
+#Fin Maribel
 
+#Héctor
+@app.route('/dsales')
+def sales():
+    return render_template('dashboard_sales.html')
+
+
+@app.route("/names")
+def names():
+    """Return a list of sample names."""
+
+    # Use Pandas to perform the sql query
+    #stmt = db2.session.query(Category.Category).statement
+    #df = pd.read_sql_query(stmt, db2.session.bind)
+
+    results = session.query(Category.Category).all()
+
+    # Convert list of tuples into normal list
+    all_names = list(np.ravel(results))
+
+    return jsonify(all_names)
+
+    # Return a list of the column names (sample names)
+    #return jsonify(list(df.columns)[1:])
+
+
+@app.route('/metadata/<category>')
+def product_metadata(category):
+    # Return Metada
+    sel = [
+        Category.Category,
+        Category.Quantity,
+        Category.Rate_000s,
+        Category.Tax_000s,
+        Category.Total_000s,
+        Category.Cost_000s,
+        Category.Profit,
+    ]
+
+    results = db2.session.query(*sel).filter(Category.Category == category).all()
+
+    category_metadata = {}
+    for result in results:
+        category_metadata['Category'] = result[0]
+        category_metadata['Quantity'] = result[1]
+        category_metadata['Rate_000s'] = result[2]
+        category_metadata['Tax_000s'] = result[3]
+        category_metadata['Total_000s'] = result[4]
+        category_metadata['Cost_000s'] = result[5]
+        category_metadata['Profit'] = result[6]
+
+    print(category_metadata)
+    
+    return jsonify(category_metadata)
+
+# NEW ADDED
+@app.route('/category/<category>')
+def product_category(category):
+    print ('Category is:' + category)    
+
+    Table = Beer
+    if category == 'BEER':
+        Table = Beer
+    elif category == 'BEVERAGES':
+        Table = Beverages
+    elif category == 'COFFEE':
+        Table = Coffee
+    elif category == 'DESSERT':
+        Table = Dessert
+    elif category == 'FOOD':
+        Table = Food
+    elif category == 'PANINI':
+        Table = Panini
+    elif category == 'SHAKES':
+        Table = Shakes
+    elif category == 'TEA':
+        Table = Tea
+    elif category == 'TOBACCO':
+        Table = Tobacco
+    elif category == 'WINES':
+        Table = Wine
+    
+
+    # CHECK
+    '''
+    sel = [
+        Table.product,
+        Table.quantity,
+    ]
+
+    results = db2.session.query(*sel).filter(Table.product == category).all()
+    results2 = db2.session.query(*sel).filter(Table.quantity == category).all()
+
+    product_data = {}
+    for result in results:
+        product_data['product'] = result[0]
+        product_data['quantity'] = result[1]
+    '''
+
+    #
+    stmt = db2.session.query(Table).statement
+    df = pd.read_sql_query(stmt, db2.session.bind)
+    
+
+    #product_data = df.loc[df[category],['product', 'quantity', category]]
+    #results = db2.session.query(*sel).filter(Category.Category == category).all()
+
+    data = {
+        #'product': df.product.values.tolist(),
+        #'quantity': df.quantity.values.tolist(),
+        'product': df['product'].tolist(),
+        'quantity': df['quantity'].tolist(),
+    }
+
+    print(jsonify(data))
+
+    return jsonify(data)
 
 
 if __name__ == "__main__":
