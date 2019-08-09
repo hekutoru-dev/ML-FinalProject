@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Marketing</title>
+
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <script src="https://d3js.org/d3.v5.min.js"></script>
+
+     <!-- Bootstrap core CSS -->
+  <link href="static/css/style_comp.css" rel="stylesheet">
+
+  <!-- Custom fonts for this template -->
+  <link href="static/libraries/fontawesome-free/css/all.min.css" rel="stylesheet">
+  <link href="static/libraries/simple-line-icons/css/simple-line-icons.css" rel="stylesheet" type="text/css">
+  <link href="https://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic,700italic" rel="stylesheet" type="text/css">
+
+  <!-- Custom styles for this template -->
+  <link href="static/css/style_main.css" rel="stylesheet">
+
+    <style>
+            body{
+                background-color: white;
+                color:black;
+            }
+            #header-nav {/* I want that the header fill the whole screen */
+                background-color: black; 
+                border-radius: 0;
+                border: 0;
+            }
+
+            .navbar-brand {/* Align the text at the same position of the image */
+                padding-top: 10px;
+            }
+            .navbar-brand h1 { /* Modify the text*/
+                font-family: 'Lora', serif;
+                color: white;
+                font-size: 1em; /* em is equal to the current font-size */
+                text-transform: uppercase;
+                font-weight: bold;
+                text-shadow: 1px 1px 1px #828181;
+            }
+
+            .navbar-brand a:hover, .navbar-brand a:focus { /* To remove any effect when the mouse is over the brand */
+                text-decoration: none;
+            }
+            
+            #nav-list a {
+                color: white;
+                text-align: center;
+            }
+            #nav-list a:hover {/* Shadow when passing the cursor over the menu */
+                background: #DADBDB;
+            }
+            #nav-list a span {
+                font-size: 1.8em; /* Increase the size in 80% */
+            }
+            .jumbotron {
+                min-height: 300px;
+                color: black;
+                box-shadow: 0 0 15px rgb(194, 194, 194);
+                margin-bottom: 10px;
+            }
+            h3
+            {
+                text-align: center;
+                background-color: black(243, 243, 243);
+                color: black;
+                margin-top:0;
+                margin-bottom:30px;
+                padding:0;
+            }
+            h2
+            {
+                color: black;
+            }
+            .comparison-clases{
+                background-color: green;
+                color: white;
+                width: 100%;
+                text-align: center;
+                background-position: center;
+                margin:0;
+                padding-top:0;
+                padding-bottom:0;
+                }
+        
+        </style>
+
+</head>
+<body>
+
+     <!-- Navigation -->
+    <nav class="navbar navbar-light bg-light static-top">
+        <div class="container">
+            <a href="index" class="img-menu">
+                <img src="static/img/pandita.svg" alt="" >
+            </a>
+        </div>
+      </nav>
+
+    <!-- Masthead -->
+    <header class="masthead text-white text-center" style="background-image: url('static/img/marketing_dash.jpg')">
+        <div class="overlay"></div>
+        <div class="container">
+        <div class="row">
+            <div class="col-xl-9 mx-auto">
+            <h1 class="mb-5">Marketing Dashboard</h1>
+            </div>
+        </div>
+        </div>
+    </header>
+
+    <!-- Dashboard -->
+    <div class="container-fuid">
+            <div class="row">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="card-header ">
+                        <br>
+                        <h3>Total Views</h3>
+                        <h3>{{ transformed.idn }}</h3>
+                </div>
+                </div>
+                
+            </div>
+        </div>
+
+     <div class="container-fuid">
+        <div class="row">
+            <div class="col-md-6 col-sm-6 col-xs-6">
+                 <div class="card-header ">
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div id="gd"></div>
+                </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                    
+                    <div class="row">
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                            <br>
+                            <div class="comparison-clases">Stay more than 5 sec</div>
+                            <h3>{{ transformed.h15 }}</h3>
+                    </div>
+                    <div class="col-md-6 col-sm-6 col-xs-6">
+                            <br>
+                            <div class="comparison-clases">Stay less than 5 sec</div>
+                            <h3>{{ transformed.l15 }}</h3>
+                    </div>
+                </div>
+                
+                <div class="row">
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="comparison-clases">Men</div>
+                                <h3>{{ transformed.mcount }}</h3>
+                        </div>
+                        <div class="col-md-6 col-sm-6 col-xs-6">
+                                <div class="comparison-clases">Woman</div>
+                                <h3>{{ transformed.fcount }}</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+                <div class="col-md-6 col-sm-6 col-xs-6">
+                        <div class="card-header ">
+                        <div id="plot"></div>
+                </div>
+            </div>
+            
+                
+             
+            </div>
+                <div class="col-md-12 col-sm-12 col-xs-12">
+                        <div class="card-header ">
+                    <div id="plot2"></div>
+                </div>
+            </div>
+                
+                
+        
+    </div>
+    
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/5.5.0/d3.min.js"></script>
+  <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+   <script src="../static/js/marketing.js"></script> 
+    
+    <!--  <script src="{{ url_for('static', filename='js/marketing.js') }}"></script>-->
+</body>
+</html>
