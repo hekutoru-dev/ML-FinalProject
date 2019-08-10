@@ -172,3 +172,19 @@ header.masthead .page-heading .subheading,header.masthead .site-heading .subhead
     header.masthead .post-heading .subheading{font-size:30px}
 }
 
+table {
+    table-layout: fixed; 
+    width: 100%;
+    *margin-left: -100px;/*ie7*/
+  }
+  td, th {
+    vertical-align: top;
+    border-top: 1px solid #ccc;
+    padding:10px;
+    width:100px;
+  }
+
+.main-panel{
+    width: 2000;
+}
+    
