@@ -7,6 +7,7 @@ body{
 	padding: 0px;
 	font-family: 'Montserrat', sans-serif;
 	background: radial-gradient(ellipse at center, rgba(233,212,179,1) 0%, rgba(233,212,179,1) 5%, rgba(233,212,179,1) 16%, rgba(193,158,103,1) 59%, rgba(182,141,76,1) 78%, rgba(182,141,76,1) 100%);
+	background-image: url('../img/river.jpeg')
 }
 html {  
 	-ms-overflow-style: scrollbar; 
@@ -109,8 +110,11 @@ h6 {
 	margin-bottom: 10px;
 	font-weight: 600;
 }
-
-
+/*
+#panda-logo {
+	fill: white;
+	background-color: #ffffff;
+}*/
 
 /*--- Login/Signup Modal ---*/
 
@@ -125,7 +129,7 @@ h6 {
 	margin-top: 80px;
 	margin-bottom: 30px;
 	color: #ffffff;
-	font-weight: 500;
+	font-weight: 600;
 }
 
 /*Profile Card 5*/
