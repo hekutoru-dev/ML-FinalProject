@@ -272,6 +272,9 @@ def product_category(category):
 
     return jsonify(data)
 
+@app.route('/team')
+def team_page():
+    return render_template('team.html')
 
 if __name__ == "__main__":
     app.run(debug=True, threaded=True)
