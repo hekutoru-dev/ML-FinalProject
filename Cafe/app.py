@@ -160,6 +160,10 @@ def marketing():
 def sales():
     return render_template('dashboard_sales.html')
 
+@app.route('/prediction')
+def prediction():
+    return render_template('sales_predictions.html')
+
 
 @app.route("/names")
 def names():
