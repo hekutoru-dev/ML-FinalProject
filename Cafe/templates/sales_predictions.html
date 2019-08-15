@@ -45,7 +45,7 @@
                 <img src="../static/img/shake.jpg">
               </div>
             </a>
-            <a href="#" class="simple-text logo-normal">
+            <a href="./index" class="simple-text logo-normal">
               LE CAFÉ
             </a>
           </div>
@@ -54,14 +54,14 @@
           <div class="sidebar-wrapper">
             <!-- SIDE LIST MENU -->
             <ul class="nav"> 
-              <li class="active ">
-                <a href="#">
+              <li >
+                <a href="./dsales">
                   <i class="nc-icon nc-chart-pie-36"></i>
                   <p>Sales Dashboard</p>
                 </a>
               </li>   
-              <li>
-                <a href="./sales_predictions.html">
+              <li class="active ">
+                <a href="./prediction">
                   <i class="nc-icon nc-money-coins"></i>
                   <p>Sales Prediction</p>
                 </a>
@@ -111,27 +111,6 @@
             <!-- ROW PROFITS -->
             <div class="row">
                 <!-- General Profits Column-Card -->
-                <div class="col-md-4">
-                  <div class="card ">
-
-                    <div class="card-header ">
-                      <h5 class="card-title">General Profits</h5>
-                      <p class="card-category">Top Categories</p>
-                    </div>
-                    <!-- ******************** GRAPHIC GENERAL PROFITS PIE CHART ******************** -->
-                    <div class="card-body ">
-                      <div id="chartProfits"></div>
-                    </div>
-
-                    <div class="card-footer ">                      
-                      <hr>
-                      <div class="stats">
-                        <i class="fa fa-dollar"></i> Best profitable products
-                      </div>
-                    </div> <!-- END This Footer -->
-                  </div> <!-- END This Card -->
-                </div>
-                <!-- END: General Profits Column-Card -->
 
                 <!-- General Pending Value Column-Card -->
                 <div class="col-md-12">
@@ -145,21 +124,7 @@
                     
                     <!-- ******************** GRAPHICS CHART ******************** -->
                     <div class="card-body">
-                      
-                      <!-- TESTIN ADD TABLE -->
-                      <table id="category-table" class="table table-striped">
-                        <thead>
-                            <tr class='table-dark'>
-                            <th class="table-head">Category</th>
-                            <th class="table-head">Quantity</th>
-                            <th class="table-head">Rate</th>
-                            <th class="table-head">Cost</th>
-                            <th class="table-head">Total</th>
-                            <th class="table-head">Profits</th>                            
-                            </tr>
-                        </thead>                        
-                        <tbody></tbody>
-                      </table>
+                      <img src="../static/img/regression.png"  alt="Sloth">
 
                     </div>
 
@@ -169,7 +134,35 @@
                       </div>
                       <hr/>
                       <div class="card-stats">
-                        <i class="fa fa-check"></i> Data information
+                        <i class="fa fa-check"></i> REGRESSION
+                      </div>
+
+                    </div> <!-- END This Footer -->
+                  </div> <!-- END This Card Chart-->
+                </div>
+
+                <div class="col-md-12">
+
+                  <div class="card card-chart">
+
+                    <div class="card-header">
+                      <h5 class="card-title">All Sales</h5>
+                      <p class="card-category">Top Categories Sales and Profit</p>                      
+                    </div>
+                    
+                    <!-- ******************** GRAPHICS CHART ******************** -->
+                    <div class="card-body">
+                      <img src="../static/img/arima.png"  alt="Sloth">
+
+                    </div>
+
+                    <div class="card-footer">
+                      <div class="chart-legend">
+                        
+                      </div>
+                      <hr/>
+                      <div class="card-stats">
+                        <i class="fa fa-check"></i> ARIMA
                       </div>
 
                     </div> <!-- END This Footer -->
@@ -180,163 +173,10 @@
 
 
             <!-- ==================================================================== -->            
-            <!-- 2nd ROW
-            CARD: SALES PER CATEGORY -->
-            <div class="row">
-              <div class="col-md-12">              
-                <div class="card ">
-                  <div class="card-header ">
-                    <h5 class="card-title">Product Sales per Category</h5>
-                    <p class="card-category">2010 - 2011</p>
-                  </div>
 
-                  <div class="card-body ">                  
-                        <div id='graphic_bars'></div>                        
-                  </div> <!-- END CARD BODY: SALES PER CATEGORY-->
-
-                  <div class="card-footer ">
-                    <hr>
-                    <div class="stats">
-                      <i class="fa fa-star"></i> Top Products for:&nbsp;&nbsp; 
-                      <!-- Scripts for Graphics -->                       
-                      <select id='selMenu' onchange="getFavProducts(this.value)">
-                        <!--
-                          <option value="beer">Beer</option>
-                          <option value="beverage">Beverage</option>
-                          <option value="coffee">Coffee</option>
-                          <option value="dessert">Dessert</option>
-                          <option value="food">Food</option>
-                          <option value="panini">Panini</option>
-                          <option value="shakes">Shakes</option>
-                          <option value="tea">Tea</option>
-                          <option value="tobacco">Tobacco</option>
-                          <option value="wines">Wines</option>
-                        -->
-                      </select>
-                      
-
-                    </div> <!-- END DIV stats-->
-                  </div> <!-- END THIS.CARD-FOOTER-->
-                </div> <!-- END CARD SALES PER CATEGORY-->
-              </div> <!-- END COL-MD12: attr -->
-            </div> 
-            <!-- END 2nd ROW-CARD: SALES PER CATEGORY -->
             <!-- ==================================================================== -->
             
-            <div class="row"> <!-- LAST DASHBOARD ROW -->
-                <!-- COLUMN A -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                  <div class="card card-stats">
-                    <div class="card-body ">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-globe text-warning"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-category">Total Rate</p>
-                            <p class="card-title" id="total-rate">0</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-footer ">
-                      <hr>
-                      <div class="stats">
-                        <i class="fa fa-dollar"></i> On Thousands
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END COLUMN A -->
-  
-                <!-- COLUMN B -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                  <div class="card card-stats">
-                    <div class="card-body ">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-money-coins text-success"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-category">Total Cost</p>                            
-                            <p class="card-subtitle" id="total-cost">0</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-footer ">
-                      <hr>
-                      <div class="stats">
-                        <i class="fa fa-dollar"></i> On Thousands
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END COLUMN B -->
-                
-                <!-- COLUMN C -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                  <div class="card card-stats">
-                    <div class="card-body ">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-vector text-danger"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-category">Total Products</p>
-                            <p class="card-title" id="total-products">0</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-footer ">
-                      <hr>
-                      <div class="stats">
-                        <i class="fa fa-calendar-o"></i> In the last year
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END COLUMN C -->
-  
-                <!-- COLUMN D -->
-                <div class="col-lg-3 col-md-6 col-sm-6">
-                  <div class="card card-stats">
-                    <div class="card-body ">
-                      <div class="row">
-                        <div class="col-5 col-md-4">
-                          <div class="icon-big text-center icon-warning">
-                            <i class="nc-icon nc-favourite-28 text-primary"></i>
-                          </div>
-                        </div>
-                        <div class="col-7 col-md-8">
-                          <div class="numbers">
-                            <p class="card-category">Total Profit</p>
-                            <p class="card-title" id="total-profit">0</p>
-                          </div>
-                        </div>
-                      </div>
-                    </div>
-                    <div class="card-footer ">
-                      <hr>
-                      <div class="stats">
-                        <i class="fa fa-dollar"></i> On Thousands
-                      </div>
-                    </div>
-                  </div>
-                </div>
-                <!-- END COLUMN D -->
-  
-              </div> <!-- END LAST DASHBOARD ROW -->               
+             
 
 
           </div> <!-- END DASHBOARD CONTAINER-->          
